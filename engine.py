@@ -29,6 +29,7 @@ def sessions():
 @app.route('/hello', endpoint='hello', methods=['GET'])
 def hello():
     try:
+        name = 'Friend'
         logger.info(f'Response: "Hello, {name}! I am working"')
         return jsonify({'result': f"Hello, {name}! I am working!"}), 200
     finally:
