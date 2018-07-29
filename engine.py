@@ -1,6 +1,9 @@
 import logging.handlers
-from flask import Flask, render_template, jsonify
+
+from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO
+
+from api_service import put_conversation_item
 
 LOGFILE = 'engine.log'
 logger = logging.getLogger(__name__)
@@ -39,6 +42,21 @@ def hello():
 @app.route('/getmessage', endpoint='get_message', methods=['GET'])
 def get_message():
     pass
+
+
+@app.route('/sendmessage', endpoint='send_message', methods=['PUT'])
+def send_message():
+    try:
+        message = request.get_json()
+        chat_id = message.get('chat_id')
+        new_message = message.get('data')
+
+        message_item = put_conversation_item(new_message, chat_id)
+
+        return jsonify({'data': message_item})
+    except Exception as e:
+        logger.exception(e)
+        return jsonify({'data': f'Error: {e}'})
 
 
 if __name__ == '__main__':
