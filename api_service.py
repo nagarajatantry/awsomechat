@@ -45,3 +45,7 @@ def put_conversation_item(message, chat_id):
     except Exception as e:
         logger.exception(e)
         raise e
+
+def close_chat():
+    msg = 'closed chat'
+    return msg
