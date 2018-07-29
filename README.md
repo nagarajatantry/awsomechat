@@ -1,7 +1,24 @@
-AWS programatic user
-awsomechat
-Access key ID AKIAI3S6IK4H5QUWRC5Q
-Secret access key 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
+# Awsomechat App API Notes
+vicc@inteletry.com
+
+Built following online guide: [Serverless Stack](https://serverless-stack.com/#table-of-contents)
+
+Logged in to AWS console under Awsomechat account
+
+Backend credentials using AWS IAM
+AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources for your users. You use IAM to control who can use your AWS resources (authentication) and what resources they can use and in what ways (authorization).
+    https://serverless-stack.com/chapters/what-is-iam.html
+
+A basic Serverless project needs permissions to the following AWS services:
+
+- **CloudFormation to create change set and update stack**
+- **S3 to upload and store Serverless artifacts and Lambda source code**
+- **CloudWatch Logs to store Lambda execution logs**
+- **IAM to manage policies for the Lambda IAM Role**
+- **API Gateway to manage API endpoints**
+- **Lambda to manage Lambda functions**
+- **EC2 to execute Lambda in VPC**
+- **CloudWatch Events to manage CloudWatch event triggers**
 
 Created these DynamoDB tables:
 User

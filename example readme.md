@@ -1,5 +1,4 @@
-# HearRo App API Notes
-vic.cooper@HearRo.com
+
 
 Built following online guide: [Serverless Stack](https://serverless-stack.com/#table-of-contents)
 
