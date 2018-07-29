@@ -39,8 +39,13 @@ def put_conversation_item(message, chat_id):
                 'message': message
             }
 
-        h = table.put_item(Item=message_item)
-        print(h)
+        response = table.put_item(Item=message_item)
+        status_code = response['ResponseMetadata'].get('HTTPStatusCode')
+        logger.info(f'Dynamo Response Code: {status_code}')
+
+        if status_code != 200:
+            raise IOError('Unable to put item into DynamoDB')
+
         return message_item
     except Exception as e:
         logger.exception(e)
