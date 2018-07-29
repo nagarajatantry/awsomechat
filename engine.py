@@ -4,7 +4,7 @@ import os
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO
 
-from api_service import put_conversation_item, provision_chat
+from api_service import put_conversation_item, provision_chat, close_chat
 
 LOGFILE = 'engine.log'
 logger = logging.getLogger(__name__)
@@ -59,6 +59,14 @@ def send_message():
         logger.exception(e)
         return jsonify({'data': f'Error: {e}'})
 
+@app.route('/closechat', endpoint='closechat', methods=['POST'])
+def closechat():
+    try:
+        close_chat()
+        return 'ok'
+    except Exception as e:
+        logger.exception(e)
+        return jsonify({'data': f'Error: {e}'})
 
 @app.route('/newchat', endpoint='create_chat', methods=['POST'])
 def create_chat():
@@ -78,7 +86,3 @@ def create_chat():
 if __name__ == '__main__':
     logger.info('Starting App...')
     app.run(host='0.0.0.0', port=5000)
-
-
-
-

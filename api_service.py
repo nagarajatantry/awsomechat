@@ -77,3 +77,7 @@ def provision_chat(company_id, user):
         logger.exception(e)
         raise e
 
+
+def close_chat():
+    msg = 'closed chat'
+    return msg

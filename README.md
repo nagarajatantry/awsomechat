@@ -69,3 +69,25 @@ aws cognito-idp admin-confirm-sign-up \
   --region us-east-1 \
   --user-pool-id us-east-1_Hnrx3Peoy \
   --username admin@example.com
+
+Cognito User Pool policy
+Awsomechat_execute_api
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "execute-api:*",
+            "Resource": "*"
+        }
+    ]
+}
+
+Identity pool name
+
+awsome chat app
+Identity pool ID us-east-1:93f5afd5-2993-4ebe-917e-6133b48ea14f 
+
+
+npx create-react-app awsomechat-app-client
