@@ -1,4 +1,5 @@
 import logging.handlers
+import os
 
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO
@@ -20,8 +21,8 @@ sout_handler.setFormatter(formatter)
 logger.addHandler(sout_handler)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'C>\xd1K\xb1zh]\xa4<I+\xf4\x14qm9m\xcd\xd5\xd1\xca\xb7\x95'
-socketio = SocketIO(app)
+# app.config['SECRET_KEY'] = os.environ('secret_key')
+# socketio = SocketIO(app)
 
 
 @app.route('/')
