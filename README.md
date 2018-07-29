@@ -88,3 +88,6 @@ Identity pool name
 
 awsome chat app
 Identity pool ID us-east-1:93f5afd5-2993-4ebe-917e-6133b48ea14f 
+
+
+npx create-react-app awsomechat-app-client
