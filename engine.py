@@ -1,9 +1,10 @@
 import logging.handlers
+import os
 
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO
 
-from api_service import put_conversation_item
+from api_service import put_conversation_item, provision_chat, close_chat
 
 LOGFILE = 'engine.log'
 logger = logging.getLogger(__name__)
@@ -20,8 +21,8 @@ sout_handler.setFormatter(formatter)
 logger.addHandler(sout_handler)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'C>\xd1K\xb1zh]\xa4<I+\xf4\x14qm9m\xcd\xd5\xd1\xca\xb7\x95'
-socketio = SocketIO(app)
+# app.config['SECRET_KEY'] = os.environ('secret_key')
+# socketio = SocketIO(app)
 
 
 @app.route('/')
@@ -58,11 +59,30 @@ def send_message():
         logger.exception(e)
         return jsonify({'data': f'Error: {e}'})
 
+@app.route('/closechat', endpoint='closechat', methods=['POST'])
+def closechat():
+    try:
+        close_chat()
+        return 'ok'
+    except Exception as e:
+        logger.exception(e)
+        return jsonify({'data': f'Error: {e}'})
+
+@app.route('/newchat', endpoint='create_chat', methods=['POST'])
+def create_chat():
+    try:
+        data = request.get_json()
+        company_id = data.get('company')
+        user = data.get('user')
+
+        response = provision_chat(company_id, user)
+
+        return jsonify({'data': response})
+    except Exception as e:
+        logger.exception(e)
+        return jsonify({'data': f'Error: {e}'})
+
 
 if __name__ == '__main__':
     logger.info('Starting App...')
     app.run(host='0.0.0.0', port=5000)
-
-
-
-
