@@ -6,7 +6,7 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <div className="lander">
-          <h1>Awsomechat</h1>
+          <h1>Awsome Chat</h1>
           <p>Take Charge of your Chat</p>
         </div>
       </div>
